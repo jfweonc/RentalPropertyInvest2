@@ -37,21 +37,6 @@ def addColumns(mycursor,table):
             continue
 
 
-"""
-def addColumns(mycursor,table):
-    mycursor.execute("SELECT * FROM {}".format(table))
-    columns = (("fullAddress", "TEXT"), ("latitude", "FLOAT"), ("longitude", "FLOAT"), ("downPayment", "FLOAT"), \
-               ("loan", "FLOAT"), ("monthlyMortgage", "FLOAT"), ("monthlyInsurance", "FLOAT"), \
-               ("monthlyPropertyTax", "FLOAT"), ("monthlyMaintenance", "FLOAT"), ("monthlyHOA", "FLOAT"), \
-               ("annualCashFlow", "FLOAT"), ("COC", "FLOAT"), ("sqftX09", "FLOAT"), ("sqftX11", "FLOAT"), \
-               ("max", "FLOAT"), ("min", "FLOAT"), ("average", "FLOAT"), ("median", "FLOAT"), ("count", "INT"), \
-               ("CDOM_Median", "FLOAT"), ("distanceFrom", "FLOAT"), ("mapIDX", "INT"), ("mapIDY", "INT"))
-    for item in columns:
-        try:
-            addColumn(mycursor,table,item[0],item[1])
-        except:
-            continue
-"""
 
 # fullAddress method needs to be tested.
 # This adds a fullAddress column and data
@@ -85,6 +70,8 @@ def geocodeByLine(table,numberOfAddresses,mydb):
         if i >= numberOfAddresses:
             break
 # calculate distance in mile between two locations, using coordinates
+
+"""
 def get_distance(lat_1, lng_1, lat_2, lng_2):
     lng_1, lat_1, lng_2, lat_2 = map(math.radians, [lng_1, lat_1, lng_2, lat_2])
     d_lat = lat_2 - lat_1
@@ -97,8 +84,10 @@ def get_distance(lat_1, lng_1, lat_2, lng_2):
        * math.sin(d_lng / 2) ** 2
     )
     return 0.621371 * 6373.0 * (2 * math.atan2(math.sqrt(temp), math.sqrt(1 - temp)))
-
+"""
 # calculate left and right side longitude, up and down side of latitude
+
+"""
 def longitudeRange(mycursor,longitude,latitude,r):
     mycursor.execute("SELECT * FROM {} ORDER BY id DESC LIMIT 1".format(userInputTable))
     inputList = list(mycursor)[0]
@@ -108,6 +97,7 @@ def longitudeRange(mycursor,longitude,latitude,r):
     lessLatitude = latitude - r/69.115
     moreLatitude = latitude + r / 69.115
     return (lessLongitude, moreLongitude, lessLatitude, moreLatitude)
+"""
 def coordinatesVariables(mycursor,userInputTable):
     mycursor.execute("SELECT * FROM {} ORDER BY id DESC LIMIT 1".format(userInputTable))
     inputList = list(mycursor)[0]

@@ -18,18 +18,28 @@ client = GeocodioClient("567b6d2536413556186219244935e66bedbd9e5")
 # add full address column
 # mycursor.execute("UPDATE rental_property.rentaldata2 SET fullAddress=CONCAT(Address,',',City,',',StateOrProvince,',',PostalCode);")
 
-
-
 # RDP.geocodeByLine("rental_property.rentaldata2", 250,mydb)
 # RDP.geocodeByLine("rental_property.salesdata",2200,mydb)
 
-
-
 # RDP.fullAddress(mycursor,"rental_property.salesdata",mydb)
+"""
 
 
+"""
+RDP.addColumns(mycursor,"rental_property.salesdata")
+RDP.fullAddress(mycursor,"rental_property.salesdata",mydb)
+RDP.geocodeByLine("rental_property.salesdata",2500,mydb)
 
+SA.updateDownLoanMortgage("rental_property.salesdata","rental_property.user_input")
+SA.updateRentEstimate(mycursor,mycursor1,mydb)
+SA.results(mycursor,mydb)
 SA.userInput()
 SA.updateDownLoanMortgage("rental_property.salesdata","rental_property.user_input")
 SA.updateRentEstimate(mycursor,mycursor1,mydb)
 SA.results(mycursor,mydb)
+
+
+
+
+
+
